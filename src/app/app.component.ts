@@ -16,9 +16,21 @@ export class AppComponent implements DoCheck {
   ngDoCheck(): void {
     if (this.route.url == '/login') {
       this.displaymenu = false
-    } else {
+    }
+    else if (this.route.url == '/register') {
+      this.displaymenu = false
+    }
+    else if (this.route.url == '/forgetpassword') {
+      this.displaymenu = false
+    }
+    else {
       this.displaymenu = true
     }
   }
+
+  logOut(){
+    localStorage.removeItem('token');
+  }
+  
   
 }

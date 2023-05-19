@@ -11,18 +11,24 @@
     /* display: block;
     width: 100%; */
 }
-.header{
+.header {
     width: 100%;
     background-color: lightblue;
-    height: 40px;
-}
-
-.menulink{
-    padding: 5px;
-    text-decoration: none;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
     font-weight: bold;
-    color: #000;
-}
+  }  
+
+  .menulink {
+    padding: 10px;
+    text-decoration: none;
+    font-weight: normal;
+    color: #333;
+  }
+  
 .error{
     color: red;
 }

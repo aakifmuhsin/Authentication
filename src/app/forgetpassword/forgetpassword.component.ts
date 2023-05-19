@@ -13,6 +13,7 @@ export class ForgetpasswordComponent implements OnInit {
   username: string | undefined;
   password: string | undefined;
   confirmPassword: string | undefined;
+  isLoading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.ResetPasswordForm = this.formBuilder.group({
@@ -36,16 +37,23 @@ export class ForgetpasswordComponent implements OnInit {
     // Send PUT request to change the password
     const apiUrl = 'https://final-vy64.onrender.com/forget_password';
     const payload = { username, password };
+     // Set isLoading to true to show the loading state
+     this.isLoading = true;
 
+     // Simulate an asynchronous action
+     setTimeout(() => {
+       // Perform your password change logic here
+ 
+       // After the action is complete, set isLoading back to false
+       this.isLoading = false;
+     }, 2000);
     this.http.put(apiUrl, payload).subscribe(
       (response) => {
-        alert('Registration Sucess: ' + response);
-        console.log('Password changed successfully');
+        alert('Password changed successfully');
         // Perform any additional actions after successful password change
       },
       (error) => {
-        alert('Registration failed: ' + error.error.detail);
-        console.error('Error occurred while changing password:', error);
+        alert('Error occurred while changing password:');
         // Handle error scenarios
       }
     );

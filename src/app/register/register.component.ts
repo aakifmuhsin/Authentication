@@ -10,6 +10,7 @@ import { AuthService } from '../service/auth.service';
 export class RegisterComponent implements OnInit {
 
   register!: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,6 +38,15 @@ export class RegisterComponent implements OnInit {
     }
 
     const customerData = this.register.value;
+    this.isLoading = true;
+
+    // Simulate an asynchronous action
+    setTimeout(() => {
+      // Perform your password change logic here
+
+      // After the action is complete, set isLoading back to false
+      this.isLoading = false;
+    }, 3000);
     this.service.SaveCustomer(customerData).subscribe(
       () => {
         // Registration successful

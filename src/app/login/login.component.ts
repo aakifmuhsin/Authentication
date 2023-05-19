@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   rememberedUsername: string = '';
   rememberedPassword: string = '';
   errorMessage: string = '';
+  isLoading: boolean = false;
   
 
   constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder) {
@@ -27,13 +28,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.pattern(/^[A-Za-z]{8}$/)]],
+      username: ['', [Validators.required, Validators.min(8)]],
       password: ['', Validators.required]
     });
   }
   ProceedLogin(login: any, rememberMe: boolean) {
     if (this.loginForm.valid) {
-      this.service.ProceedLogin(login.value).subscribe(result => {
+      this.isLoading = true;
+
+      // Simulate an asynchronous action
+      setTimeout(() => {
+        // Perform your password change logic here
+  
+        // After the action is complete, set isLoading back to false
+        this.isLoading = false;
+      }, 6000);
+      this.service.ProceedLogin(login.value).subscribe( (result) => {
         if(result!=null){
           this.responsedata=result;
           localStorage.setItem('token',this.responsedata.access_token)
@@ -49,57 +59,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(tokenData));
           this.route.navigate([''])
         }
-        else {
-        alert('Registration failed: ');
-        console.error('Registration failed');
-          
-        }
-      }),
-      (error: { error: { detail: string; }; }) => {
-        // Registration failed
-        alert('Registration failed: ' + error.error.detail);
-        console.error('Registration failed', error);
-      };
+      },
+      (error) => {
+        alert('Invalid Username and Password');
+      })
     }
     else {
-      this.errorMessage = 'Failed to Retrieve Data.'
+      this.errorMessage = 'Failed to Retrieve Data. '
     }
   }
-  forgotPassword() {
-    // const username = this.Login.get('username')?.value;
-    // let foundUser = null;
-    // let userId = null;
-  
-    // if (username !== -1) {
-    //   // Retrieve the list of users from the API
-    //   this.service.forgetPass(username.value).subscribe(
-    //     (result: any) => {
-    //       if (result && result.length > 0) {
-    //         // Search for the user with the exact name or email
-    //         foundUser = result.find((user: { email: any }) => user.email === username);
-  
-    //         // Check if a user was found
-    //         if (foundUser) {
-    //           userId = foundUser.id;
-    //           console.log(userId);
-    //           // Store the userId value in the sessionStorage
-    //           sessionStorage.setItem('userId', userId);
-              this.route.navigate(['/forgot-password']);
-  //           } else {
-  //             alert('You are not a user. Please sign up');
-  //           }
-  //         } else {
-  //           alert('Failed to retrieve the user list');
-  //         }
-  //       },
-  //       (error) => {
-  //         alert('An error occurred while retrieving the user list');
-  //       }
-  //     );
-  //   } else {
-  //     alert('Please provide an email');
-  //   }
-  }
-  
-  
 }
