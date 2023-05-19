@@ -29,9 +29,9 @@ export class AddnewComponent implements OnInit {
 
   register = new FormGroup({
     id: new FormControl({ value: "", disabled: true }),
-    name: new FormControl("", Validators.required),
+    username: new FormControl("", Validators.required),
     email: new FormControl("", Validators.compose([Validators.required, Validators.email])),
-    phone: new FormControl("", Validators.required),
+    phonenumber: new FormControl("", Validators.required),
   });
 
   SaveCustomer() {
@@ -51,7 +51,6 @@ export class AddnewComponent implements OnInit {
             this.message = "Failed to Save"
             this.messageclass = "error"
           }
-
         }
       });
     } else {
@@ -63,9 +62,9 @@ export class AddnewComponent implements OnInit {
   clearCustomer() {
     this.register = new FormGroup({
       id: new FormControl(""),
-      name: new FormControl(""),
+      username: new FormControl(""),
       email: new FormControl(""),
-      phone: new FormControl(""),
+      phonenumber: new FormControl(""),
     });
   }
 
@@ -74,17 +73,17 @@ export class AddnewComponent implements OnInit {
       this.editdata = data;
       this.register = new FormGroup({
         id: new FormControl(this.editdata.id),
-        name: new FormControl(this.editdata.name),
+        username: new FormControl(this.editdata.username),
         email: new FormControl(this.editdata.email),
-        phone: new FormControl(this.editdata.phone),
+        phonenumber: new FormControl(this.editdata.phonenumber),
       });
     });
 
 
   }
 
-  get name(){
-    return this.register.get("name");
+  get username(){
+    return this.register.get("username");
   }
   get email(){
     return this.register.get("email");

@@ -1,48 +1,68 @@
 <div class="container-fluid" style="margin-top: 10%;">
-    <div class="row">
-      <div class="offset-lg-3 col-lg-6">
-     
-  <div class="card-box" style="background-color: #ccc;">
-      <form [formGroup]="Login" (ngSubmit)="ProceedLogin()">
-  
-     
-      <div class="row" style="display: block;">
-        <h2 style="text-align: center;" >Login</h2>
-      </div>
-      
-    <div class="row">
-      <div class="offset-lg-3 col-lg-6">
-          <div class="form-group">
-              <label for="txtname">User Name</label>
-              <input type="text" id="txtname" class="form-control" formControlName="username" placeholder="Enter the User Name"   autocomplete="off"  />
+  <div class="row">
+    <div class="offset-lg-3 col-lg-6">
+      <div class="card-box" style="background-color: #ccc;">
+        <form [formGroup]="loginForm" (ngSubmit)="ProceedLogin(loginForm, rememberMe.checked)">
+
+          <div class="row" style="display: block;">
+            <h2 style="text-align: center;">Login</h2>
           </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="offset-lg-3 col-lg-6">
-          <div class="form-group">
-              <label for="txtpassword">password</label>
-              <input type="text" id="txtpassword" class="form-control" formControlName="password"  placeholder="Enter the password"  autocomplete="off"  />
+
+          <div class="row">
+            <div class="offset-lg-3 col-lg-6">
+              <div class="form-group">
+                <label for="txtname">User Name</label>
+                <input type="text" id="txtname" class="form-control" formControlName="username" placeholder="Enter the User Name" autocomplete="off">
+                <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                  <div *ngIf="loginForm.controls['username'].errors?.['required']">Username is required.</div>
+                </div>
+              </div>
+            </div>
           </div>
-      </div>
-    </div>
-    
-    
-    <div class="row">
-      <div class="offset-lg-3 col-lg-2">
-        <br>
-          <div class="form-group" style="text-align: center;">
-             <button type="submit" class="btn btn-primary btn-lg btn-block" >Login</button>
+
+          <div class="row">
+            <div class="offset-lg-3 col-lg-6">
+              <div class="form-group">
+                <label for="txtpassword">Password</label>
+                <input type="password" id="txtpassword" class="form-control" formControlName="password" placeholder="Enter the Password" autocomplete="off">
+                <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                  <div *ngIf="loginForm.controls['password'].errors?.['required']">Password is required.</div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="row">
+            <div class="offset-lg-3 col-lg-6">
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe" #rememberMe>
+                <label class="form-check-label" for="rememberMe">Remember me</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="offset-lg-3 col-lg-2">
+              <br>
+              <div class="form-group" style="text-align: center;">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <br>
+              <div class="form-group" style="text-align: center;">
+                <button type="button" class="btn btn-secondary btn-lg btn-block" (click)="forgotPassword()">Forgot Password</button>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <br>
+              <div class="form-group" style="text-align: center;">
+                <a class="btn btn-secondary btn-lg btn-block" [routerLink]="'/register'">Register</a>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-      <div class="col-lg-3">
-          <br>
-          <span></span>
-      </div>
-    </div>
-  </form>
-    
     </div>
   </div>
-  </div>
-  </div>
+</div>

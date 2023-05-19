@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Ancy",
+      "email": "ancy@example.com",
+      "password": "password1",
+      "registernumber": "96351904006",
+      "gender": "female",
+      "phone": "9585657614",
+      "dob": ""
+    },
+    {
+      "id": 2,
+      "name": "Jeevithan",
+      "email": "pxjeevi@mail.com",
+      "password": "1234",
+      "regnumber": "963519104027",
+      "gender": "male",
+      "phone": "9585657314",
+      "dob": "2023-04-26"
+    },
+    {
+      "id": 3,
+      "name": "Agathi",
+      "email": "agathi@email.com",
+      "password": "1234",
+      "regnumber": "963519122002",
+      "gender": "male",
+      "phone": "1234567890",
+      "dob": "2023-04-30"
+    },
+    {
+      "id": 4,
+      "name": "Hello",
+      "email": "hello@email.com",
+      "password": "321",
+      "regnumber": "963519122002",
+      "gender": "male",
+      "phone": "8098685460",
+      "dob": ""
+    },
+    {
+      "id": 5,
+      "name": "vijesh",
+      "email": "vijesh@email.com",
+      "password": "1234",
+      "regnumber": "963519104008",
+      "gender": "male",
+      "phone": "1234567890",
+      "dob": "2023-05-01"
+    },
+    {
+      "email": "",
+      "id": 6
+    }
+  ]
+}

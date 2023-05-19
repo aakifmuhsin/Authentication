@@ -13,6 +13,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {CookieService} from 'ngx-cookie-service';
 import { LoginComponent } from './login/login.component'
 import { TokenInterceptorService } from './service/token-interceptor.service';
+import { RegisterComponent } from './register/register.component';
+import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TokenInterceptorService } from './service/token-interceptor.service';
     CustomerComponent,
     ListingComponent,
     AddnewComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    ForgetpasswordComponent
   ],
   imports: [
     BrowserModule,
