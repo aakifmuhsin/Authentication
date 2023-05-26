@@ -20,17 +20,30 @@ export class LoginComponent implements OnInit {
   rememberedPassword: string = '';
   errorMessage: string = '';
   isLoading: boolean = false;
-  
+  showPassword: boolean = false;  
 
   constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder) {
-    localStorage.clear();
+    
   }
 
   ngOnInit(): void {
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+    if(storedUsername && storedPassword){
+      this.loginForm = this.formBuilder.group({
+        username: [storedUsername, [Validators.required, Validators.min(8)]],
+        password: [storedPassword, Validators.required]
+      });
+    }
+    else{
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.min(8)]],
       password: ['', Validators.required]
     });
+  }
+  }
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
   ProceedLogin(login: any, rememberMe: boolean) {
     if (this.loginForm.valid) {
@@ -46,18 +59,19 @@ export class LoginComponent implements OnInit {
       this.service.ProceedLogin(login.value).subscribe( (result) => {
         if(result!=null){
           this.responsedata=result;
-          localStorage.setItem('token',this.responsedata.access_token)
-          // decode the token to get user data  
-          const tokenData = JSON.parse(atob(this.responsedata.access_token.split('.')[1]));
           if (rememberMe) {
             localStorage.setItem('username', login.value.username);
             localStorage.setItem('password', login.value.password);
-          } else {
+          } else
+          {
             localStorage.removeItem('username');
             localStorage.removeItem('password');
           }
-          localStorage.setItem('user', JSON.stringify(tokenData));
-          this.route.navigate([''])
+          localStorage.setItem('token',this.responsedata.access_token)
+          // decode the token to get user data  
+          // const tokenData = JSON.parse(atob(this.responsedata.access_token.split('.')[1]));
+          // localStorage.setItem('user', JSON.stringify(tokenData));
+          this.route.navigate(['/home'])
         }
       },
       (error) => {

@@ -18,6 +18,26 @@
   label {
     font-weight: bold;
   }
+  .password-input {
+    position: relative;
+  }
+  
+  .eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  
+  .eye-icon i {
+    font-size: 16px;
+    transition: color 0.3s;
+  }
+  
+  .eye-icon i.fa-eye-slash:hover {
+    color: red;
+  }
   
   input[type="text"],
   input[type="password"],

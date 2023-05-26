@@ -14,6 +14,8 @@ export class ForgetpasswordComponent implements OnInit {
   password: string | undefined;
   confirmPassword: string | undefined;
   isLoading: boolean = false;
+  showPassword: boolean = false;  
+
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {
     this.ResetPasswordForm = this.formBuilder.group({
@@ -22,7 +24,9 @@ export class ForgetpasswordComponent implements OnInit {
       confirmPassword: ['', Validators.required]
     });
   }
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
   ngOnInit(): void {
   }
 

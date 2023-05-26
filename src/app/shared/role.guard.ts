@@ -10,13 +10,13 @@ export class RoleGuard implements CanActivate {
   constructor(private service:AuthService,private route:Router){
 
   }
-  canActivate(){
-   if(this.service.HaveAccess()){
+  canActivate(): boolean {
+    if (this.service.IsLoggedIn()) {
+      // User is already logged in, redirect to home page
+      this.route.navigate(['/home']);
+      return false;
+    }
     return true;
-   }else{
-     this.route.navigate(['']);
-     return false;
-   }
   }
   
 }

@@ -11,12 +11,10 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 const routes: Routes = [
-  {path:"login",component:LoginComponent},
-  {path:"register", component: RegisterComponent},
-  {path:"forgetpassword", component: ForgetpasswordComponent},
+  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
   { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
   {
-    path: "customer", component: CustomerComponent,  canActivate: [AuthGuard],  
+    path: "customer", component: CustomerComponent,  canActivate: [AuthGuard],
     children: [{
       path: "", component: ListingComponent
     },
@@ -24,7 +22,9 @@ const routes: Routes = [
     { path: "Edit/:id", component: AddnewComponent }]
    // ,canActivate:[RoleGuard]
   },
-  
+  {path:"login",component:LoginComponent ,canActivate:[RoleGuard]},
+  {path:"register", component: RegisterComponent,canActivate:[RoleGuard]},
+  {path:"forgetpassword", component: ForgetpasswordComponent,canActivate:[RoleGuard]}
 ];
 
 @NgModule({

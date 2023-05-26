@@ -1,4 +1,4 @@
-<div class="container" style="margin-top: 10%;">
+<div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-lg-6">
         <div class="card" style="background-color: #f8f9fa;">
@@ -17,7 +17,12 @@
   
               <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password" autocomplete="off">
+                <div class="password-input">
+                  <input [attr.type]="showPassword ? 'text' : 'password'" id="txtpassword" class="form-control" formControlName="password" placeholder="Enter your password" autocomplete="off">
+                  <div class="eye-icon" (click)="togglePasswordVisibility()">
+                    <i class="fa" [class.fa-eye]="showPassword" [class.fa-eye-slash]="!showPassword"></i>
+                  </div>
+                </div>
                 <div *ngIf="register.controls['password'].invalid && (register.controls['password'].dirty || register.controls['password'].touched)">
                   <div *ngIf="register.controls['password'].errors?.['required']" class="text-danger">Password is required.</div>
                   <div *ngIf="register.controls['password'].errors?.['minlength']" class="text-danger">Password should be at least 8 characters long.</div>
@@ -68,7 +73,7 @@
   
               <div class="form-group">
                 <label for="gender">Gender</label>
-                <select id="gender" class="form-control" formControlName="gender">
+                <select id="gender" class="form-control" placeholder="Gender" formControlName="gender" >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
@@ -86,7 +91,7 @@
   
               <div class="row">
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="isLoading">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!register.valid ||isLoading">
                         <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         <span *ngIf="!isLoading">Register</span>
                       </button>

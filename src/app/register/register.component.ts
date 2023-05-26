@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
 
   register!: FormGroup;
   isLoading: boolean = false;
+  showPassword: boolean = false;  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +32,9 @@ export class RegisterComponent implements OnInit {
       dob: ['', Validators.required]
     });
   }
-
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
   onRegister() {
     if (this.register.invalid) {
       return;
