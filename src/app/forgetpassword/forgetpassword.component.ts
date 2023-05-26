@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ForgetpasswordComponent implements OnInit {
 
-  ResetPasswordForm: FormGroup;
+  ResetPasswordForm!: FormGroup;
   username: string | undefined;
   password: string | undefined;
   confirmPassword: string | undefined;
@@ -21,15 +21,16 @@ export class ForgetpasswordComponent implements OnInit {
     this.ResetPasswordForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+  
+  ngOnInit(): void {
+    
   }
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
-  ngOnInit(): void {
-  }
-
   changePassword() {
     if (this.ResetPasswordForm.invalid) {
       return;

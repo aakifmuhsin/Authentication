@@ -12,9 +12,13 @@ export class AuthService {
   apifrgt='https://final-vy64.onrender.com/forget_password'
 
   constructor(private http:HttpClient) {}
+  
 
   ProceedLogin(UserCred:any){
-    return this.http.post(this.apiurl,UserCred).pipe(
+    // const option = {
+    //   withCredentials: true
+    // };
+    return this.http.post(this.apiurl,UserCred ).pipe(
       catchError(() => {
         return throwError('Error getting token from API.');
       })
