@@ -11,8 +11,10 @@ import { RegisterComponent } from './register/register.component';
 import { ForgetpasswordComponent } from './forgetpassword/forgetpassword.component';
 
 const routes: Routes = [
-  { path: "", component: HomeComponent, canActivate: [AuthGuard] },
-  { path: "home", component: HomeComponent, canActivate: [AuthGuard] },
+  { path: "", component: HomeComponent, 
+  canActivate: [AuthGuard] },
+  { path: "home", component: HomeComponent, 
+  canActivate: [AuthGuard] },
   {
     path: "customer", component: CustomerComponent,  canActivate: [AuthGuard],
     children: [{

@@ -11,7 +11,6 @@ export class AppComponent implements DoCheck {
   title = 'project3';
   displaymenu=false;
   constructor(private cookie:CookieService,private route:Router){
-
   }
   ngDoCheck(): void {
     switch (this.route.url) {

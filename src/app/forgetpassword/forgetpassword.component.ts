@@ -53,11 +53,11 @@ export class ForgetpasswordComponent implements OnInit {
        this.isLoading = false;
      }, 2000);
     this.http.put(apiUrl, payload).subscribe(
-      (response) => {
+      (response : any) => {
         alert('Password changed successfully');
         // Perform any additional actions after successful password change
       },
-      (error) => {
+      (error : any) => {
         alert('Error occurred while changing password:');
         // Handle error scenarios
       }

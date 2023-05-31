@@ -1,7 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { DOCUMENT } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-login',
@@ -10,8 +15,8 @@ import { AuthService } from '../service/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
-  messageclass = ''
-  message = ''
+  messageclass = '';
+  message = '';
   Customerid: any;
   editdata: any;
   responsedata: any;
@@ -22,8 +27,8 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
   showPassword: boolean = false;  
 
-  constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder) {
-    
+  constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder,private cookieService: CookieService,private http: HttpClient,
+    @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {
@@ -45,6 +50,7 @@ export class LoginComponent implements OnInit {
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
+  
   ProceedLogin(login: any, rememberMe: boolean) {
     if (this.loginForm.valid) {
       this.isLoading = true;
@@ -71,6 +77,14 @@ export class LoginComponent implements OnInit {
           // decode the token to get user data  
           // const tokenData = JSON.parse(atob(this.responsedata.access_token.split('.')[1]));
           // localStorage.setItem('user', JSON.stringify(tokenData));
+          const responseCookies = result.headers.getAll('Set-Cookie');
+          // cookies.forEach((cookie) => {
+          //   this.document.cookie = cookie;
+          // });
+          this.cookieService.set('cookieName', this.responsedata.access_token);
+          const storedCookies = this.cookieService.get('cookieName');
+          localStorage.setItem('cookies',storedCookies);
+                                                                        
           this.route.navigate(['/home'])
         }
       },

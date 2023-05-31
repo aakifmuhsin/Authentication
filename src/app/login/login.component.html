@@ -1,6 +1,6 @@
 <div class="container my-5">
   <div class="row justify-content-center">
-    <div class="col-lg-6">
+    <div class="col">
       <div class="card" style="background-color: #f8f9fa;">
         <div class="card-body">
           <h2 class="text-center mb-4">Login</h2>
@@ -35,13 +35,13 @@
             </div>
 
             <div class="row">
-              <div class="col">
-                <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.valid || isLoading">
+              <div class="col text-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-block w-100" [disabled]="!loginForm.valid || isLoading">
                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                   <span *ngIf="!isLoading">Login</span>
                 </button>
               </div>
-            </div>
+            </div>            
           </form>
 
           <div class="row mt-3">
@@ -49,7 +49,7 @@
               <button type="button" class="btn btn-link" [routerLink]="'/forgetpassword'">Forgot Password?</button>
             </div>
             <div class="col text-center">
-              <button type="button" class="btn btn-link" [routerLink]="'/register'">Register</button>
+              <button type="button" class="btn btn-link" [routerLink]="'/register'">Create new account</button>
             </div>
           </div>
         </div>
