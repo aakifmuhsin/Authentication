@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ListingComponent implements OnInit {
   customerdata!: MatTableDataSource<any>;
-  displayedColumns: string[] = ['id', 'username', 'phone_number', 'email', 'reg_no', 'address', 'gender', 'dob'];
+  displayedColumns: string[] = [ 'username', 'phone_number', 'email', 'reg_no', 'address', 'gender', 'dob'];
 
   pageSizeOptions: number[] = [5, 10, 25, 100];
   pageSize = 5;

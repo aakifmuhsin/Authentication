@@ -5,6 +5,8 @@ import { AuthService } from '../service/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { DOCUMENT } from '@angular/common';
+import { AES } from 'crypto-js';
+import { StickyDirection } from '@angular/cdk/table';
 
 
 
@@ -26,11 +28,15 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = false;
   showPassword: boolean = false;  
+  password: string = '';
+  encodedPassword: string = '';
 
   constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder,private cookieService: CookieService,private http: HttpClient,
     @Inject(DOCUMENT) private document: Document) {
   }
-
+  decodePassword(): void {
+    this.encodedPassword = this.Todecode(this.password);
+  }
   ngOnInit(): void {
     const storedUsername = localStorage.getItem('username');
     const storedPassword = localStorage.getItem('password');
@@ -73,6 +79,8 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('username');
             localStorage.removeItem('password');
           }
+          
+
           localStorage.setItem('token',this.responsedata.access_token)
           // decode the token to get user data  
           // const tokenData = JSON.parse(atob(this.responsedata.access_token.split('.')[1]));
@@ -96,4 +104,24 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Failed to Retrieve Data. '
     }
   }
+  Todecode(password: string): any{
+    const byteString = '06_AFY4rY5lCy6QrPiA3G0OFQKoN06SQUJzr2Iine9U=';
+    const byteCharacters = atob(byteString);
+    const byteArray  = new Uint8Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteArray[i] = byteCharacters.charCodeAt(i);
+    }
+
+    // Access individual bytes in the Uint8Array
+    console.log(byteArray[0]); // Output: 6
+
+    // Convert the byte array back to a base64-encoded string
+    const byteStringFromBytes = btoa(String.fromCharCode.apply(null, Array.from(byteArray)));
+    console.log(byteStringFromBytes);
+  }
+
 }
+function decodeBase64(secret: string) {
+  throw new Error('Function not implemented.');
+}
+

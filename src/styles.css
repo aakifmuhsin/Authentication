@@ -4,8 +4,8 @@
   margin: 0;
 }
 .card-box {
-    padding: 10px;
-    border-radius: 3px;
+    padding: 100px 0px 100px 0px;
+    border-radius: 0px;
     background-color: #5fcde0;
      /* Add a box shadow for a subtle effect */
 }

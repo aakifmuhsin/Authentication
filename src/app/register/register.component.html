@@ -1,7 +1,7 @@
 <div class="container my-5">
   <div class="row justify-content-center">
     <div class="col">
-      <div class="card" style="background-color: #f8f9fa;">
+      <div class="card">
         <div class="card-body">
           <h2 class="text-center mb-4">Sign Up</h2>
          
@@ -89,7 +89,7 @@
               <input type="date" id="dob" class="form-control" formControlName="dob" placeholder="Enter your date of birth" autocomplete="off">
             </div>
 
-            <div class="row">
+            <div class="row mt-3">
               <div class="col text-center">
                 <button type="submit" class="btn btn-primary btn-lg btn-block w-100" [disabled]="!register.valid || isLoading">
                   <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -101,6 +101,9 @@
                 <button type="button" class="btn btn-link" [routerLink]="'/login'">Login</button>
               </div>
           </form>
+            <div class="col text-center">
+              <span class="text" style="color: aliceblue;" disabled>This is the Sign Up Page where user can sign up with their information</span>
+            </div>
         </div>
       </div>
     </div>

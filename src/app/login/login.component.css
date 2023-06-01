@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background: #e2e2e2;
 }
@@ -98,7 +99,7 @@ label {
 /* Media Queries for Mobile View */
 @media (max-width: 576px) {
   .container {
-    padding: 0 10px;
+    padding: 0;
   }
   
   .card {
@@ -114,7 +115,7 @@ label {
 /* Media Queries for Desktop View */
 @media (min-width: 992px) {
   .container {
-    padding: 0 40px;
+    padding: 0;
   }
   
   .card {
