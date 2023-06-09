@@ -70,9 +70,10 @@ encryptData(password: string): string {
   return encrypted.toString();
 }
 
-
-decryptData(ciphertext: string): string {
-  const decryptedText = AES.decrypt(ciphertext, this.encryptionKey).toString(enc.Utf8);
-  return decryptedText;
+decryptData(encryptedData: string): string {
+  const decrypted = AES.decrypt(encryptedData, enc.Hex.parse(this.encryptionKey), {
+    mode: mode.ECB
+  });
+  return decrypted.toString(enc.Utf8);
 }
 }

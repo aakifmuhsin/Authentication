@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
     this.encodedPassword = this.Todecode();
   }
   ngOnInit(): void {
-    const storedUsername = localStorage.getItem('username');
-    const storedPassword = localStorage.getItem('password');
+    const storedUsername = localStorage.getItem('ddvsd_DWDDWDxcdsvsv');
+    const storedPassword = localStorage.getItem('dvdsa_SWvssfvswaadc');
     if(storedUsername && storedPassword){
       this.loginForm = this.formBuilder.group({
-        username: [storedUsername, [Validators.required, Validators.min(8)]],
-        password: [storedPassword, Validators.required]
+        username: [this.service.decryptData(storedUsername), [Validators.required, Validators.min(8)]],
+        password: [this.service.decryptData(storedPassword), Validators.required]
       });
     }
     else{
