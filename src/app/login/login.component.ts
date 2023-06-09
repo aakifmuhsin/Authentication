@@ -2,11 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
-import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { DOCUMENT } from '@angular/common';
-import { AES } from 'crypto-js';
-import { StickyDirection } from '@angular/cdk/table';
 
 
 
@@ -31,11 +27,11 @@ export class LoginComponent implements OnInit {
   password: string = '';
   encodedPassword: string = '';
 
-  constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder,private cookieService: CookieService,private http: HttpClient,
+  constructor(private service: AuthService,private route:Router,private formBuilder: FormBuilder,
     @Inject(DOCUMENT) private document: Document) {
   }
   decodePassword(): void {
-    this.encodedPassword = this.Todecode(this.password);
+    this.encodedPassword = this.Todecode();
   }
   ngOnInit(): void {
     const storedUsername = localStorage.getItem('username');
@@ -60,7 +56,7 @@ export class LoginComponent implements OnInit {
   ProceedLogin(login: any, rememberMe: boolean) {
     if (this.loginForm.valid) {
       this.isLoading = true;
-
+      
       // Simulate an asynchronous action
       setTimeout(() => {
         // Perform your password change logic here
@@ -68,31 +64,20 @@ export class LoginComponent implements OnInit {
         // After the action is complete, set isLoading back to false
         this.isLoading = false;
       }, 6000);
-      this.service.ProceedLogin(login.value).subscribe( (result) => {
-        if(result!=null){
+      const username = this.loginForm.value.username;
+      const password = this.service.encryptData(this.loginForm.value.password);
+      this.service.ProceedLogin( username, password).subscribe( (result) => {
+       if(result!=null){
           this.responsedata=result;
           if (rememberMe) {
-            localStorage.setItem('username', login.value.username);
-            localStorage.setItem('password', login.value.password);
+            localStorage.setItem('dsd', username);
+            localStorage.setItem('dsa', password);
           } else
           {
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
+            localStorage.removeItem('dsd');
+            localStorage.removeItem('dsa');
           }
-          
-
-          localStorage.setItem('token',this.responsedata.access_token)
-          // decode the token to get user data  
-          // const tokenData = JSON.parse(atob(this.responsedata.access_token.split('.')[1]));
-          // localStorage.setItem('user', JSON.stringify(tokenData));
-          const responseCookies = result.headers.getAll('Set-Cookie');
-          // cookies.forEach((cookie) => {
-          //   this.document.cookie = cookie;
-          // });
-          this.cookieService.set('cookieName', this.responsedata.access_token);
-          const storedCookies = this.cookieService.get('cookieName');
-          localStorage.setItem('cookies',storedCookies);
-                                                                        
+          localStorage.setItem('token',this.responsedata.access_token)                                                         
           this.route.navigate(['/home'])
         }
       },
@@ -104,24 +89,6 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Failed to Retrieve Data. '
     }
   }
-  Todecode(password: string): any{
-    const byteString = '06_AFY4rY5lCy6QrPiA3G0OFQKoN06SQUJzr2Iine9U=';
-    const byteCharacters = atob(byteString);
-    const byteArray  = new Uint8Array(byteCharacters.length);
-    for (let i = 0; i < byteCharacters.length; i++) {
-      byteArray[i] = byteCharacters.charCodeAt(i);
-    }
-
-    // Access individual bytes in the Uint8Array
-    console.log(byteArray[0]); // Output: 6
-
-    // Convert the byte array back to a base64-encoded string
-    const byteStringFromBytes = btoa(String.fromCharCode.apply(null, Array.from(byteArray)));
-    console.log(byteStringFromBytes);
+  Todecode(): any{
   }
-
 }
-function decodeBase64(secret: string) {
-  throw new Error('Function not implemented.');
-}
-

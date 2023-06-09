@@ -12,17 +12,18 @@ export class RegisterComponent implements OnInit {
   register!: FormGroup;
   isLoading: boolean = false;
   showPassword: boolean = false;  
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private service: AuthService
   ) {}
-
+  emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   ngOnInit() {
     this.register = this.formBuilder.group({
+      
       username: ['', [Validators.required, Validators.minLength(8)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required,Validators.email, Validators.pattern(this.emailPattern)]],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
       reg_no: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]],

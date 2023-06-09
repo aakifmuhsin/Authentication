@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http'
   providedIn: 'root'
 })
 export class CustomerService {
-apiurl='https://final-vy64.onrender.com/student_list';
+apiurl='https://final-vy64.onrender.com/student_list?page=${page}&page_size=${this.pageSize}';
 apiurll='https://final-vy64.onrender.com/register';
   constructor(private http:HttpClient) {}
 

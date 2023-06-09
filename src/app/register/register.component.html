@@ -1,8 +1,9 @@
-<div class="container my-5">
+<div class="container">
   <div class="row justify-content-center">
     <div class="col">
       <div class="card">
         <div class="card-body">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADS0lEQVR4nO1YzWsTURBPET34WQ9+FKHpvMQPqqigXlRE0ZsXv9C/QqHtwVbRFkTazCQtigq1elJUPIge/KKHXqonDwX1okJtm5kl1VYFDwXbRmbTTbe21aTZpCvsD4ZdZufNm9+b3XnzNhQKECBAgP8S6xP964DkKpDUmJbhFarTK6DUGuTrBnmPY2vivNcQ35hmS1KjPtRXyQkAyn1DklYB5B9A8kCvji6jl1dA8nqqbrotoNybBwLc5Q6sEAHkLt8QAOT3BuUuoIy4VnjEEN+xn/mRACBfMsQJQ9bhUDpdps8rWwcrAOU8xPhcGFNr7UHpdJnaqG1mjPiDQISs/fmO1zGm1AQMWasj8eRuwOQhg9LjFQGD0qM+1Xf0sqzyPPBwnDcZlBeGeGymd7hgAuQWHgPkZxBPbvAmeExuN8Tf/1ZFvCUgTla+AQ5sLSz6h+kFUyoH8iigvDEknYZk2EMCw+rT9o086vo23moMc47fxJMHXcH/NDHZOXMVknZDfDYfyYyRaR8xkOyy53IWJ2YdmDMBIKlzrdLNUm1kBqXDtTi1BRDgpqwj4qYpk5Dc9oqAQbmV67yeEYhe+bpcMwQoLQUJSZ36KjmBYgLmg0BVYmBbZXPfSrcu3GxVqbh1aqO2viJgSC5ObEJWuK233CmTQPxLpYpkn02orbdcbSbe+wv+IYDyJFv2WqzNGVJ8JqtDPp3RWVsm/clj3xDQoIHkkdZ3R7cx9mWZXQ5ROvR+kizXq22UpNo3BLwGBATyXAlAOa7Nl3asO9rTC1UXSfRHgfiTit6rrrrx3SJD8tK2JTnmmwxo++vYOSXS3YY47UCms836e+obArqa2lEC8fMpGUD5CCQfopiKZDNgnytk2CAf9Q0BrwHFIJA5A+TXMs9dpLMYBOZFICBA2a2/u+DWOfcWu9urDDRMHjq4NVQiGORW17z1c3Zkb1CTjj47nWZOQWhpRRZDwpE4H8l1XNjuWKXPNe+s5fafqL6WWgrEg66Pqi/zCzGHSoIy5DoyDuVYgRLu4AE5tYasJaFCEIklTxnk8ZJXIORxIDkR8gJVZJ38IxPFLZ3IKc+Cd6Cp1Pda/zYXr/pwg77zFY282NPgAwQIECBAaBb8Bu23njAM0FphAAAAAElFTkSuQmCC" class="rounded mx-auto d-block">
           <h2 class="text-center mb-4">Sign Up</h2>
          
           <form [formGroup]="register" (ngSubmit)="onRegister()">
@@ -97,12 +98,12 @@
                 </button>
               </div>
             </div>
-              <div class="col text-center">
+              <div class="col text-center pt-3">
                 <button type="button" class="btn btn-link" [routerLink]="'/login'">Login</button>
               </div>
           </form>
             <div class="col text-center">
-              <span class="text" style="color: aliceblue;" disabled>This is the Sign Up Page where user can sign up with their information</span>
+              <span class="text" style="color: aliceblue;" disabled>This is the Sign Up Page where user can sign up </span>
             </div>
         </div>
       </div>

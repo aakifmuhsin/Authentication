@@ -44,9 +44,13 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
     <div class="mobile-paginator responsive" fxHide.gt-sm>
-      <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons [pageSize]="pageSize" [pageIndex]="pageIndex" [length]="totalItems" (page)="onPageChange($event)"></mat-paginator>
+      <mat-paginator [pageSizeOptions]="pageSizeOptions" showFirstLastButtons [pageSize]="pageSize" [pageIndex]="currentPage - 1" [length]="totalItems" (page)="onPageChange($event)"></mat-paginator>
     </div>
+    <div>
+      <button mat-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <button mat-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+   
   </div>
 </div>
