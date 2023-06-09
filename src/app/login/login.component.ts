@@ -70,12 +70,12 @@ export class LoginComponent implements OnInit {
        if(result!=null){
           this.responsedata=result;
           if (rememberMe) {
-            localStorage.setItem('dsd', username);
-            localStorage.setItem('dsa', password);
+            localStorage.setItem('ddvsd_DWDDWDxcdsvsv', this.service.encryptData(this.loginForm.value.username));
+            localStorage.setItem('dvdsa_SWvssfvswaadc', password);
           } else
           {
-            localStorage.removeItem('dsd');
-            localStorage.removeItem('dsa');
+            localStorage.removeItem('ddvsd_DWDDWDxcdsvsv');
+            localStorage.removeItem('dvdsa_SWvssfvswaadc');
           }
           localStorage.setItem('token',this.responsedata.access_token)                                                         
           this.route.navigate(['/home'])
